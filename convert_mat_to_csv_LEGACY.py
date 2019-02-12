@@ -26,6 +26,8 @@ from os.path import isfile, join
 
 #PATH_TO_GT_FILES = "VIS_Onshore/ObjectGT" # here set the path to the ground truth .mat files
 PATH_TO_GT_FILES = "NIR/ObjectGT"
+PATHS_TO_GT_FILES = ["NIR/ObjectGT", "VIS_Onshore/ObjectGT", "VIS_Onboard/ObjectGT"]
+PATHS_TO_SAVE_CSV_FILES = ['objects_nir_2.txt', 'objects_onshore_2.txt', 'objects_onboard_2.txt']
 
 class Frame:
     """
@@ -223,8 +225,10 @@ def get_all_gt_files_in_csv(path, integer_bb=False):
     
     return object_list
             
+
+for i, file_path in enumerate(PATHS_TO_GT_FILES):
     
-frame_list = get_all_gt_files_in_csv(PATH_TO_GT_FILES, False)
+    frame_list = get_all_gt_files_in_csv(file_path, False)
 
 #frames = load_mat_files_in_dict(PATH_TO_GT_FILES)
 
@@ -233,9 +237,9 @@ frame_list = get_all_gt_files_in_csv(PATH_TO_GT_FILES, False)
 #     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 #     wr.writerow(frame_list)
      
-with open('objects_nir_2.txt', 'w') as f:
-    for item in frame_list:
-        f.write("%s\n" % item)
+    with open(PATHS_TO_SAVE_CSV_FILES[i], 'w') as f:
+        for item in frame_list:
+            f.write("%s\n" % item)
      
      
 #object_gt_files_dict = generate_gt_files_dict(PATH_TO_GT_FILES)
