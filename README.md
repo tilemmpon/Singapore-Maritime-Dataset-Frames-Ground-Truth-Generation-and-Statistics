@@ -32,4 +32,39 @@ Before running any of the scripts or the Jupyter notebooks you need to first dow
 
 Here some basics statistics generated for the whole dataset will be given.
 
+### Histogram of the objects area ration compared to the images total area
 ![Histogram of the objects area ration compared to the images total area](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/histogram_area_full_dataset.png)
+
+### Frequency of objects' type, motion and distance per dataset and combined
+![Frequency of objects' type, motion and distance per dataset and combined](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/multiple_graphs.png)
+
+### Distance of objects by type and video source
+![Distance of objects by type and video source](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/object_distance_multibar_2.png)
+
+### Motion of objects by type and video source
+![Motion of objects by type and video source](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/object_motion_multibar_2.png)
+
+### Objects type count per video in total values
+![Objects type count per video](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/objects_per_video_all.png)
+
+### Objects type count per video normalized
+![Objects type count per video normalized](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/objects_per_video_all_normalized.png)
+
+### Heatmap of all objects in the dataset
+![Heatmap of all objects in the dataset](https://github.com/tilemmpon/Singapore-Maritime-Dataset-Frames-Ground-Truth-Generation-and-Statistics/blob/master/figures/heatmap_objects_all.png)
+
+## Citing
+
+If the Singapore Maritime Dataset is used please cite it as:
+D. K. Prasad, D. Rajan, L. Rachmawati, E. Rajabaly, and C. Quek, 
+"Video Processing from Electro-optical Sensors for Object Detection and 
+Tracking in Maritime Environment: A Survey," IEEE Transactions on Intelligent 
+Transportation Systems (IEEE), 2017. 
+
+If code/figures from this repo are used please add a reference to the repository.
+
+## Contribution
+
+To report an issue use the GitHub issue tracker. Please provide as much information as you can.
+
+Contributions are always welcome. Open an issue to contact me. The preferred method of contribution is through a github pull request.
