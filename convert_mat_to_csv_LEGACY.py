@@ -24,10 +24,10 @@ from scipy.io import loadmat
 from os import listdir
 from os.path import isfile, join
 
-#PATH_TO_GT_FILES = "VIS_Onshore/ObjectGT" # here set the path to the ground truth .mat files
-PATH_TO_GT_FILES = "NIR/ObjectGT"
+# set the paths to the ground truth .mat files
 PATHS_TO_GT_FILES = ["NIR/ObjectGT", "VIS_Onshore/ObjectGT", "VIS_Onboard/ObjectGT"]
-PATHS_TO_SAVE_CSV_FILES = ['objects_nir_2.txt', 'objects_onshore_2.txt', 'objects_onboard_2.txt']
+# set the path and filesnames where the txt files will be saved in CSV format
+PATHS_TO_SAVE_CSV_FILES = ['objects_nir.txt', 'objects_onshore.txt', 'objects_onboard.txt']
 
 class Frame:
     """
@@ -58,10 +58,6 @@ class Frame:
         self.motion = motion
         self.distance = distance
         self.csv_list_initialized = False
-        
-        if self.frame == 'MVI_0799_VIS_OB_frame80.jpg':
-            print("=================================")
-            print(self.objects)
         
     def generate_list_as_csv(self, integer_bb=False):
         """
@@ -168,16 +164,7 @@ def load_mat_files_in_dict(path):
         for i in range(frames_number):
             image_name = file_name.split('/')[-1].replace('_ObjectGT.mat','') + ('_frame%d.jpg' % i)
             bb = gt['structXML'][0]['BB'][i]
-            objects = gt['structXML'][0]['Object'][i]
-            
-            # WE HAVE A BAD ENTRY HERE!!!!
-#            if (image_name == 'MVI_1613_VIS_frame0.jpg'):
-#                print('=================================')
-#                print(gt['structXML'][0]['Object'][i])
-#                print(key)
-#                print(frames_number)
-#                print(object_gt_files_dict[key])
-                
+            objects = gt['structXML'][0]['Object'][i]                
             motion = gt['structXML'][0]['Motion'][i]
             distance = gt['structXML'][0]['Distance'][i]
             frame = Frame(i, image_name, bb, objects, motion, distance)
@@ -229,45 +216,8 @@ def get_all_gt_files_in_csv(path, integer_bb=False):
 for i, file_path in enumerate(PATHS_TO_GT_FILES):
     
     frame_list = get_all_gt_files_in_csv(file_path, False)
-
-#frames = load_mat_files_in_dict(PATH_TO_GT_FILES)
-
-# write to file
-#with open("frames.csv", 'w', newline='') as myfile:
-#     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-#     wr.writerow(frame_list)
      
     with open(PATHS_TO_SAVE_CSV_FILES[i], 'w') as f:
         for item in frame_list:
             f.write("%s\n" % item)
      
-     
-#object_gt_files_dict = generate_gt_files_dict(PATH_TO_GT_FILES)
-#print(object_gt_files_dict)
-#
-#file_name = PATH_TO_GT_FILES + '/MVI_1478_VIS_ObjectGT.mat'
-#
-#gt = loadmat(file_name)
-#
-## get the number of frames
-#frames_number = len(gt['structXML'][0])
-#
-#
-#
-## process data for each frame
-#frames = {}
-#for i in range(frames_number):
-#    image_name = file_name.split('/')[-1].replace('_ObjectGT.mat','') + ('_frame%d.jpg' % i)
-#    bb = gt['structXML'][0]['BB'][i]
-#    objects = gt['structXML'][0]['Object'][i]
-#    motion = gt['structXML'][0]['Motion'][i]
-#    distance = gt['structXML'][0]['Distance'][i]
-#    frame = Frame(i, image_name, bb, objects, motion, distance)
-#    frames[image_name] = frame
-#
-#
-#test = frames['MVI_1478_VIS_frame67.jpg']
-#test.generate_list_as_csv()
-#test.generate_list_as_csv_integer()
-
-#print(gt.items())
