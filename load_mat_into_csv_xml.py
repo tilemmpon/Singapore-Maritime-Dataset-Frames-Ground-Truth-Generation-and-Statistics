@@ -510,6 +510,8 @@ def generate_split_dataset_csv_xml(path, frames_tuple, paths_list, integer_bb=Fa
     object_list_test = []
     object_gt_files_dict = generate_gt_files_dict(path)
     
+    print(object_gt_files_dict)
+    
     for key in object_gt_files_dict.keys():
         file_name = object_gt_files_dict[key]
         
@@ -520,7 +522,7 @@ def generate_split_dataset_csv_xml(path, frames_tuple, paths_list, integer_bb=Fa
         
         # process data for each frame
         for i in range(frames_number):
-            image_name = file_name.split('/')[-1].replace('_ObjectGT.mat','') + ('_frame%d.jpg' % i)
+            image_name = file_name.split('\\')[-1].replace('_ObjectGT.mat','') + ('_frame%d.jpg' % i)
             
             if image_name in train_frames:
                 bb = gt['structXML'][0]['BB'][i]
@@ -563,6 +565,10 @@ parser.add_argument("-f",
                     help="Directory that has the train and test folder with the frames", type=str)
 args = parser.parse_args()
 
+print(args.inputDir)
+print(args.outputDir)
+print(args.framesDir)
+
 if(args.inputDir is None):
     args.inputDir = os.getcwd()
 if(args.outputDir is None):
@@ -578,6 +584,11 @@ images_train_path = os.path.join(args.framesDir, 'train')
 images_test_path = os.path.join(args.framesDir, 'test')
 xml_annotations_train_path = os.path.join(args.framesDir, 'train_annotations')
 xml_annotations_test_path = os.path.join(args.framesDir, 'test_annotations')
+
+
+print(images_train_path)
+print(images_test_path)
+#print(args.framesDir)
 
 # generate the xml folders if they are not there
 if not os.path.isdir(xml_annotations_train_path):
